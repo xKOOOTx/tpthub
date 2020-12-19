@@ -1,32 +1,65 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div id="app" class="center">
+    <ul>
+      <li class="list"><a href="#" class="link" @click="setLocale('en')">en</a></li>
+      <li class="list"><a href="#" class="link" @click="setLocale('ru')">ru</a></li>
+    </ul>
+    <img src="./assets/logo.png" alt="Vue logo">
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
-<style>
+
+<script>
+import HelloWorld from './components/HelloWorld'
+import '@/assets/style/style.scss'
+
+export default {
+  name: 'app',
+  components: {
+    HelloWorld
+  },
+  methods: {
+    setLocale(locale) {
+      this.$i18n.locale = locale
+    }
+  }
+}
+</script>
+<style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
+  margin-top: 100px;
 }
 
-#nav {
-  padding: 30px;
+ul {
+  display: flex;
+  justify-content: center;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.list {
+  list-style: none;
 }
+.link {
+  display: block;
+  text-decoration: none;
+  padding: 5px 10px;
+  margin: 5px;
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+  border: 1px solid transparent;
+
+  transition: all .2s ease-in;
+  &:hover {
+    //text-decoration: underline;
+    border: 1px solid #ccc;
+    box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.35);
+    background-color: darkseagreen;
+  }
+
 }
 </style>
