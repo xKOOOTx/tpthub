@@ -2,14 +2,19 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <div class="hello__text">
-      <p class="hello__text_p">For a guide and recipes on how to configure / customise this project, checkout the
-        <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>
+      <p class="hello__text_p">
+        <i18n path="guideTxt">
+          <br place="break" />
+          <a href="https://cli.vuejs.org" target="_blank" rel="noopener" place="action">{{ $t('guideDocTxt') }}</a>
+        </i18n>
       </p>
     </div>
-    <h3>Installed CLI Plugins</h3>
+    <h3>{{ $t('pluginsTxt') }}</h3>
     <ul>
-      <li><a href="#">Just some links</a></li>
-      <li><a href="#">Just some links</a></li>
+      <li><a href="https://cli.vuejs.org/ru/core-plugins/babel.html">babel</a></li>
+      <li><a href="https://cli.vuejs.org/ru/core-plugins/eslint.html">eslint</a></li>
+      <li><a href="#">{{ $t('someLink1') }}</a></li>
+      <li><a href="#">{{ $t('someLink2') }}</a></li>
     </ul>
   </div>
 </template>
@@ -50,7 +55,13 @@ ul{
   margin-top: 10px;
   & li {
     list-style: none;
-    margin: 5px
+    margin: 5px;
+    & a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 }
 

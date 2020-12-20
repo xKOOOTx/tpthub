@@ -5,23 +5,29 @@
       <li class="list"><a href="#" class="link" @click="setLocale('ru')">ru</a></li>
     </ul>
     <img src="./assets/logo.png" alt="Vue logo">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld :msg="$t('welcomeMsg')"/>
+    <RequestFacts />
   </div>
 </template>
 
 
 <script>
 import HelloWorld from './components/HelloWorld'
+import RequestFacts from "@/components/RequestFacts";
 import '@/assets/style/style.scss'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    HelloWorld,
+    RequestFacts
   },
   methods: {
     setLocale(locale) {
-      this.$i18n.locale = locale
+      import(`./langs/${locale}.json`).then((msgs) => {
+        this.$i18n.setLocaleMessage(locale, msgs)
+        this.$i18n.locale = locale
+      })
     }
   }
 }
