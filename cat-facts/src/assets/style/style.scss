@@ -6,7 +6,6 @@
   transition: all .2s linear;
 }
 
-.center {
-  padding-left: calc(50% - 450px);
-  padding-right: calc(50% - 450px);
+.hidden {
+  display: none;
 }

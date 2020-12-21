@@ -1,48 +1,71 @@
 <template>
-  <div id="app" class="center">
+  <div id="app">
     <ul>
       <li class="list"><a href="#" class="link" @click="setLocale('en')">en</a></li>
       <li class="list"><a href="#" class="link" @click="setLocale('ru')">ru</a></li>
     </ul>
-    <img src="./assets/logo.png" alt="Vue logo">
-    <HelloWorld :msg="$t('welcomeMsg')"/>
-    <RequestFacts />
+    <v-table
+      :users_data="USERS"
+    />
   </div>
 </template>
 
 
 <script>
-import HelloWorld from './components/HelloWorld'
-import RequestFacts from "@/components/RequestFacts";
-import '@/assets/style/style.scss'
+import {mapActions, mapGetters} from 'vuex'
+import vTable from './components/table/v-table'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld,
-    RequestFacts
+    vTable,
+  },
+  data: () => {
+    return {
+
+    }
+  },
+  computed: {
+    ...mapGetters([
+        'USERS'
+    ])
   },
   methods: {
+    ...mapActions([
+        'GET_USERS_FROM_API'
+    ]),
     setLocale(locale) {
       import(`./langs/${locale}.json`).then((msgs) => {
         this.$i18n.setLocaleMessage(locale, msgs)
         this.$i18n.locale = locale
       })
     }
+  },
+  mounted() {
+    this.GET_USERS_FROM_API()
   }
 }
 </script>
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  Roboto,
+  Oxygen,
+  Ubuntu,
+  Cantarell,
+  "Fira Sans",
+  "Droid Sans",
+  "Helvetica Neue",
+  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 
-  margin-top: 100px;
+  margin: 5px 0;
 }
-
 ul {
   display: flex;
   justify-content: center;
@@ -57,15 +80,17 @@ ul {
   padding: 5px 10px;
   margin: 5px;
 
-  border: 1px solid transparent;
+  font-family: inherit;
+  color: inherit;
+
+  border: 1px solid #ccc;
 
   transition: all .2s ease-in;
-  &:hover {
-    //text-decoration: underline;
-    border: 1px solid #ccc;
-    box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.35);
-    background-color: darkseagreen;
-  }
 
+  &:hover {
+    border: 1px solid #ccc;
+    background-color: #ccc;
+    color: #fff;
+  }
 }
 </style>

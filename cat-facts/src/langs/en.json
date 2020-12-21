@@ -1,8 +1,12 @@
 {
-  "welcomeMsg": "Welcome to Your Vue.js App",
-  "pluginsTxt": "Installed CLI Plugins",
-  "guideTxt": "For a guide and recipes on how to configure / customise this project {break} check out the {action}",
-  "guideDocTxt": "vue-cli documentation",
+  "facts": "Amount of facts on the page",
+  "type": "type",
+  "fact": "fact",
+  "show": "show",
+  "hide": "hide",
+  "createDate": "creation date",
+  "updateDate": "update date",
+  "confirm": "confirm",
   "someLink1": "First link to nowhere for test",
   "someLink2": "Second link to nowhere for test"
 }
